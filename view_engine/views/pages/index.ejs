@@ -1,0 +1,30 @@
+<%- include('../partials/header') %>
+<%- include('../partials/nav') %>
+<div id="container">
+  <h1><%= title %>  </h1>
+
+  <p class="p1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel, sapiente, est? Labore doloribus corrupti perspiciatis, similique sapiente, ea officiis fugit saepe minus assumenda, velit molestias. Iure, in. Labore, nisi, nostrum!</p>
+
+  <p class="p2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati tempore, eius quia est accusamus veniam pariatur dolorum magnam illum adipisci nihil aliquam eveniet quo amet porro harum consequuntur deserunt, eligendi dolores distinctio officiis voluptatum eaque a magni ab! Recusandae, ab.</p>
+  
+  <h1><%= newDate %></h1><!-- we can use dynamic data as a variable like this  by using this symbol-->
+
+  <% if(post.published){ %>
+    <h2><%= post.title%></h2>
+    <h2><%= post.body%></h2>
+  <% } else{ %> 
+    <h2>this post is not yet published</h2>
+  <% } %> <!-- we can use condition in ejs like this..by using this special symbol-->
+
+  <% for(let p of posts){ %>
+    <ul style="float: left; display: inline;">
+      <%= p.title %>  By <%= p.author %>
+    </ul>
+
+  <% } %>
+
+
+
+</div>
+
+<%- include('../partials/footer') %>
