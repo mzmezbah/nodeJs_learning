@@ -16,7 +16,7 @@ app.use(express.json());
 let Schema = mongoose.Schema;
 let testSchema = new Schema({
   name: String,
-  phone: Number,
+  phone: String,
   emails: String,
 });
 
@@ -30,7 +30,7 @@ app.get("/", (req, res) => {
   //Here we use this model and in this model we need to pass our data by following schema which we use this model
   let test = new Test({
     name: "ziahan",
-    phone: 01983774554,
+    phone: "01983774554" ,
     emails: "mzmziahaala@gmail.com"
   });
   //for saving this data we need to use this "save" fn & its return a promise
