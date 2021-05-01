@@ -52,12 +52,12 @@ const PORT = process.env.PORT || 8080;
 mongoose
   .connect("mongodb+srv://mezbah:45406331@cluster0.pn01s.mongodb.net/test-db", {
     useNewUrlParser: true,
-    useUnifiedTopology: true,
+    useUnifiedTopology: true
   })
   .then(() => {
     app.listen(PORT, () => {
-      console.log(`The server is running on port - ${PORT}`);
-    });
+      console.log(`The server is running on port - ${PORT}`)
+    })
   })
   .catch((err) => {
     console.log(err);
