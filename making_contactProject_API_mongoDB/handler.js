@@ -61,6 +61,7 @@ exports.createContact = (req, res) => {
 }
 
 exports.updateContactById = (req, res) => {
+    let {name,phone,email} = req.body
     let 
         {id}
      = req.params
