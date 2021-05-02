@@ -25,7 +25,6 @@ let newSchema = new Schema({
         required: true,
         trim: true,
         minlength: 8,
-        maxlength: 20
     }
 })
 
