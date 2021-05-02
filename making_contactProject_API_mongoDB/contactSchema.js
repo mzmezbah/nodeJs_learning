@@ -1,7 +1,6 @@
 const {
     Schema,
-    model,
-    Mongoose
+    model
 } = require('mongoose')
 
 let newSchema = new Schema({
