@@ -1,9 +1,7 @@
 const express = require('express')
 const morgan = require('morgan')
 const mongoose = require('mongoose')
-const {
-    Router
-} = require('./router')
+const Router = require('./router')
 
 const app = express()
 
@@ -14,8 +12,12 @@ app.use(express.urlencoded({
 }))
 app.use(express.json())
 
+
+
 app.use('/', Router)
 app.use('/contacts', Router)
+
+
 
 const PORT = process.env.PORT || 8080
 
