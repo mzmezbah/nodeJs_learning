@@ -12,7 +12,7 @@ exports.getAllContacts = (req, res) => {
         .catch((err) => {
             console.log(err)
             res.json({
-                error: Error Occurrs
+                message : 'error Occurrs'
             })
         })
 }
@@ -30,7 +30,7 @@ exports.getSingleContact = (req, res) => {
         .catch(err => {
             console.log(err)
             res.json({
-                error: Error Occurrs
+                message: 'Error Occurrs'
             })
         })
 }
@@ -54,22 +54,22 @@ exports.createContact = (req, res) => {
         .catch(err => {
             console.log(err)
             res.json({
-                error: Error Occurrs
+                message: 'Error Occurrs'
             })
         })
 
 }
 
 exports.updateContactById = (req, res) => {
-    let {
+    let 
         id
-    } = req.params.id
+     = req.params.id
     //here in this query we need to pass first arg is condition, then we need to pass our update data , for pass update data there have many system but here i use single "set" operator system like under...
     //here third arg is for return update data . Otherwise this query method update data but by promise its return the previous data...
     Contact.findOneAndUpdate({
             _id: id
         }, {
-            $set {
+            $set: {
                 name,
                 phone,
                 email
@@ -83,7 +83,7 @@ exports.updateContactById = (req, res) => {
         .catch(err => {
             console.log(err)
             res.json({
-                error: Error Occurrs
+                message: 'Error Occurrs'
             })
         })
 }
@@ -102,7 +102,7 @@ exports.deleteContactById = (req, res) => {
         .catch(err => {
             console.log(err)
             res.json({
-                error: Error Occurrs
+                message: 'Error Occurrs'
             })
         })
 }

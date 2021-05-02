@@ -14,6 +14,7 @@ app.use(express.urlencoded({
 }))
 app.use(express.json())
 
+app.use('/', Router)
 app.use('/contacts', Router)
 
 const PORT = process.env.PORT || 8080
