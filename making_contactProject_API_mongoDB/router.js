@@ -1,13 +1,13 @@
 const Router = require('express').Router()
 const {
-    getAllContact,
+    getAllContacts,
     getSingleContact,
     createContact,
     updateContactById,
     deleteContactById
 } = require('./handler')
 
-Router.get('/', getAllContact)
+Router.get('/', getAllContacts)
 Router.get('/:id', getSingleContact)
 Router.post('/', createContact)
 Router.put('/:id', updateContactById)
