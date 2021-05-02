@@ -20,7 +20,7 @@ exports.getAllContacts = (req, res) => {
 exports.getSingleContact = (req, res) => {
     let {
         id
-    } = req.params.id
+    } = req.params
     Contact.findById({
             _id: id
         })
@@ -62,8 +62,8 @@ exports.createContact = (req, res) => {
 
 exports.updateContactById = (req, res) => {
     let 
-        id
-     = req.params.id
+        {id}
+     = req.params
     //here in this query we need to pass first arg is condition, then we need to pass our update data , for pass update data there have many system but here i use single "set" operator system like under...
     //here third arg is for return update data . Otherwise this query method update data but by promise its return the previous data...
     Contact.findOneAndUpdate({
@@ -91,7 +91,7 @@ exports.updateContactById = (req, res) => {
 exports.deleteContactById = (req, res) => {
     let {
         id
-    } = req.params.id
+    } = req.params
     // for deleting query system we need to pass just our condition as a obj & its also return a promise
     Contact.findOneAndDelete({
             _di: id
