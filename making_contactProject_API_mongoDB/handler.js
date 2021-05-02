@@ -12,7 +12,7 @@ exports.getAllContacts = (req, res) => {
         .catch((err) => {
             console.log(err)
             res.json({
-                message : 'error Occurrs'
+                message : 'error Occurred'
             })
         })
 }
@@ -30,7 +30,7 @@ exports.getSingleContact = (req, res) => {
         .catch(err => {
             console.log(err)
             res.json({
-                message: 'Error Occurrs'
+                message: 'Error Occurred'
             })
         })
 }
@@ -54,7 +54,7 @@ exports.createContact = (req, res) => {
         .catch(err => {
             console.log(err)
             res.json({
-                message: 'Error Occurrs'
+                message: 'Error Occurred'
             })
         })
 
@@ -83,7 +83,7 @@ exports.updateContactById = (req, res) => {
         .catch(err => {
             console.log(err)
             res.json({
-                message: 'Error Occurrs'
+                message: 'Error Occurred'
             })
         })
 }
@@ -94,7 +94,7 @@ exports.deleteContactById = (req, res) => {
     } = req.params
     // for deleting query system we need to pass just our condition as a obj & its also return a promise
     Contact.findOneAndDelete({
-            _di: id
+            _id: id
         })
         .then(contact => {
             res.json(contact)
@@ -102,7 +102,7 @@ exports.deleteContactById = (req, res) => {
         .catch(err => {
             console.log(err)
             res.json({
-                message: 'Error Occurrs'
+                message: 'Error Occurred'
             })
         })
 }
