@@ -13,7 +13,7 @@ userRouter.get('/signUp', (req,res)=>{
 })
 
 userRouter.get('/logOut', (req,res)=> {
-  res.send('<h1>hello,,this is logOut page..')
+  res.send('<h1>hello,,this is logOut page..</h1>')
 })
 
 

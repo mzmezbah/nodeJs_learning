@@ -1,4 +1,3 @@
-
 // let contact = []
 
 // let contactData = localStorage.getItem(data)
@@ -6,31 +5,31 @@
 //     localStorage.setItem(data, JSON.stringify(contact))
 // }
 
-class Contacts{
-    constructor(data){
+class Contacts {
+    constructor(data) {
         this.contacts = []
-    //     this.data = data
-    //     this.contacts = JSON.parse(localStorage.getItem(data))
+        //     this.data = data
+        //     this.contacts = JSON.parse(localStorage.getItem(data))
     }
 
-    getAllContacts(){
+    getAllContacts() {
         return this.contacts
     }
 
-    getContactById(id){
-     return this.contacts.find(contact => contact.id == id)
+    getContactById(id) {
+        return this.contacts.find(contact => contact.id == id)
     }
 
-    createContact(contact){
+    createContact(contact) {
         if (this.contacts.length == 0) {
             contact.id = this.contacts.length + 1
         } else {
-            contact.id = this.contacts[this.contacts.length-1].id + 1
+            contact.id = this.contacts[this.contacts.length - 1].id + 1
         }
         this.contacts.push(contact)
         return contact
     }
-    updateContactById(id,updatedContact){
+    updateContactById(id, updatedContact) {
         let index = this.contacts.findIndex(contact => contact.id === id)
 
         this.contacts[index].name = updatedContact.name || this.contacts[index].name
@@ -40,10 +39,10 @@ class Contacts{
 
     }
 
-    deleteContactById(id){
+    deleteContactById(id) {
         let index = this.contacts.findIndex(contact => contact.id === id)
         let deletedObj = this.contacts[index]
-        this.contacts = this.contacts.filter(contact =>contact.id != id )
+        this.contacts = this.contacts.filter(contact => contact.id != id)
         return deletedObj
 
     }
