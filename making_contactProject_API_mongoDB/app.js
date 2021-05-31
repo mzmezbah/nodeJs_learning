@@ -9,7 +9,7 @@ app.set('view engine', 'ejs')
 
 app.use(morgan('dev'))
 app.use(express.urlencoded({
-    extended: true
+  extended: true
 }))
 app.use(express.json())
 
@@ -33,5 +33,5 @@ mongoose
     })
   })
   .catch((err) => {
-    console.log(err);
+    console.log(err)
   });

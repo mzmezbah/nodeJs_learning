@@ -7,12 +7,15 @@ exports.getAllContacts = (req, res) => {
 
     Contact.find()
         .then(contacts => {
-            res.render('index', {contacts})
+            res.render('index', {
+                contacts,
+                error: {}
+            })
         })
         .catch((err) => {
             console.log(err)
             res.json({
-                message : 'error Occurred'
+                message: 'error Occurred'
             })
         })
 }
@@ -39,8 +42,45 @@ exports.createContact = (req, res) => {
     let {
         name,
         phone,
-        email
+        email,
+        id
     } = req.body
+
+    let error = {}
+
+    if (!name) {
+        error.name = 'please provide Your Name'
+    }
+    if (!phone) {
+        error.phone = 'please provide Your Phone Number'
+    }
+
+    if (!email) {
+        error.email = 'please provide Your email'
+    }
+
+
+    let isError = Object.keys(error).length > 0
+    console.log(error, isError)
+    if (isError) {
+        Contact.find()
+            .then(contacts => {
+                return res.render(
+                    'index', {
+                        error,
+                        contacts
+                    }
+                )
+            })
+            .catch(err => {
+                console.log(err)
+                return res.json({
+                    message: 'Error Occurred'
+                })
+            })
+
+    }
+
     // here we need to catch our data from body & put it on the data model & then we need to use save fn on this model like under & its return a promise..
     let contact = new Contact({
         name,
@@ -48,23 +88,34 @@ exports.createContact = (req, res) => {
         email
     })
     contact.save()
-        .then(contact => {
-            res.json(contact)
+        .then(c => {
+            Contact.find()
+                .then(contacts => {
+                    return res.render('index', {
+                        contacts,
+                        error: {}
+                    })
+                })
         })
         .catch(err => {
             console.log(err)
-            res.json({
+            return res.json({
                 message: 'Error Occurred'
             })
         })
 
+
 }
 
 exports.updateContactById = (req, res) => {
-    let {name,phone,email} = req.body
-    let 
-        {id}
-     = req.params
+    let {
+        name,
+        phone,
+        email
+    } = req.body
+    let {
+        id
+    } = req.params
     //here in this query we need to pass first arg is condition, then we need to pass our update data , for pass update data there have many system but here i use single "set" operator system like under...
     //here third arg is for return update data . Otherwise this query method update data but by promise its return the previous data...
     Contact.findOneAndUpdate({
@@ -93,12 +144,20 @@ exports.deleteContactById = (req, res) => {
     let {
         id
     } = req.params
+
+
     // for deleting query system we need to pass just our condition as a obj & its also return a promise
     Contact.findOneAndDelete({
             _id: id
         })
-        .then(contact => {
-            res.json(contact)
+        .then(() => {
+            Contact.find()
+                .then(contacts => {
+                    res.render('index', {
+                        contacts,
+                        error: {}
+                    })
+                })
         })
         .catch(err => {
             console.log(err)

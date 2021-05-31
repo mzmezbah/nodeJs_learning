@@ -9,7 +9,7 @@ let newSchema = new Schema({
         required: true,
         trim: true,
         minlength: 3,
-        maxlength: 12
+        maxlength: 15
 
     },
     phone: {
