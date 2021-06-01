@@ -26,6 +26,7 @@
           class="row gx-3 gy-2 align-items-center"
           method="POST"
           action="/contacts"
+          id="my-form"
         >
           <div class="col-sm-3">
             <input
@@ -41,11 +42,11 @@
           <div class="col-sm-3">
             <input
               type="text"
-              class="form-control <%= error.phone ? 'is-invalid' : '' %>" 
+              class="form-control <%= error.phone ? 'is-invalid' : '' %>"
               placeholder="PhoneNumber"
               name="phone"
             />
-            <div class="invalid-feedback"> <%= error.phone %> </div>
+            <div class="invalid-feedback"><%= error.phone %></div>
           </div>
 
           <div class="col-sm-3">
@@ -53,17 +54,13 @@
               <div class="input-group-text">@</div>
               <input
                 type="email"
-                class="form-control <%= error.email ? 'is-invalid' : '' %>" 
+                class="form-control <%= error.email ? 'is-invalid' : '' %>"
                 id="specificSizeInputGroupUsername"
                 placeholder="Email"
                 name="email"
               />
-              <div class="invalid-feedback"> <%= error.email %> </div>
+              <div class="invalid-feedback"><%= error.email %></div>
             </div>
-          </div>
-
-          <div class="col-auto">
-            <button type="submit" class="btn btn-primary">Submit</button>
           </div>
 
           <div class="col-auto">
@@ -73,7 +70,14 @@
               placeholder="PhoneNumber"
               name="id"
             />
-            <!-- <button type="submit" class="btn btn-primary">Reset</button> -->
+          </div>
+
+          <div class="col-auto">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+
+          <div class="col-auto">
+            <a href="/" class="btn btn-primary">Reset</a>
           </div>
         </form>
       </div>
@@ -97,10 +101,16 @@
             <td><%= contact.phone %></td>
             <td><%= contact.email %></td>
             <td>
-              <button class="btn btn-outline-warning">Edit</button>
-              <a
-                href="/delete/<%= contact._id %>"
-                class="btn btn-danger btn-sm"
+              <button
+                class="btn btn-outline-warning edit-btn"
+                data-name="<%= contact.name %>"
+                data-phone="<%= contact.phone %>"
+                data-email="<%= contact.email %>"
+                data-id="<%= contact._id %>"
+              >
+                Edit
+              </button>
+              <a href="/delete/<%= contact._id %>" class="btn btn-danger btn-sm"
                 >Delete</a
               >
             </td>
@@ -127,5 +137,23 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
+    <script>
+      window.onload = () => {
+        let editBtns = document.getElementsByClassName("edit-btn");
+        let form = document.getElementById("my-form");
+        [...editBtns].forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            let { name, phone, email, id } = e.target.dataset;
+            form[0].value = name;
+            form[1].value = phone;
+            form[2].value = email;
+            form[3].value = id;
+            form[4].value = 'Update';
+            // console.log(e.target.dataset)
+            // console.log(form[4].value)
+          });
+        });
+      };
+    </script>
   </body>
 </html>

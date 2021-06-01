@@ -62,6 +62,7 @@ exports.createContact = (req, res) => {
 
     let isError = Object.keys(error).length > 0
     console.log(error, isError)
+    console.log(req.user)
     if (isError) {
         Contact.find()
             .then(contacts => {
@@ -81,28 +82,58 @@ exports.createContact = (req, res) => {
 
     }
 
-    // here we need to catch our data from body & put it on the data model & then we need to use save fn on this model like under & its return a promise..
-    let contact = new Contact({
-        name,
-        phone,
-        email
-    })
-    contact.save()
-        .then(c => {
-            Contact.find()
-                .then(contacts => {
-                    return res.render('index', {
+    if (id) {
+        Contact.findOneAndUpdate({
+                _id: id
+            }, {
+                $set: {
+                    name,
+                    phone,
+                    email
+                }
+            }, {
+                new: true
+            })
+            .then(() => {
+                Contact.find().then(contacts => {
+                    res.render('index', {
                         contacts,
                         error: {}
                     })
                 })
-        })
-        .catch(err => {
-            console.log(err)
-            return res.json({
-                message: 'Error Occurred'
             })
+            .catch(err => {
+                console.log(err)
+                res.json({
+                    message: 'Error Occurred'
+                })
+            })
+    } else {
+        // here we need to catch our data from body & put it on the data model & then we need to use save fn on this model like under & its return a promise..
+        let contact = new Contact({
+            name,
+            phone,
+            email
         })
+        contact.save()
+            .then(c => {
+                Contact.find()
+                    .then(contacts => {
+                        return res.render('index', {
+                            contacts,
+                            error: {}
+                        })
+                    })
+            })
+            .catch(err => {
+                console.log(err)
+                return res.json({
+                    message: 'Error Occurred'
+                })
+            })
+    }
+
+
 
 
 }
