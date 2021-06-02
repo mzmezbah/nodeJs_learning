@@ -5,7 +5,7 @@ const fs = require('fs');
 const morgan = require('morgan'); // its a third party middleware.
 
 
-const app = express() // epxress is a fn...when we call this express fn it create a server and her we create a server name app...we will keep all of our data in this server....
+const app = express() // express is a fn...when we call this express fn it create a server and here we create a server name app...we will keep all of our data in this server....
 
 // app.use(morgan('dev')) // use middleware for all route..
 
@@ -13,7 +13,7 @@ const app = express() // epxress is a fn...when we call this express fn it creat
 // function DemoMiddleware(req,res,next){
 //   console.log('hello, i am running', req.url);
 //   next()
-// } // we can make a middleware. its a fn . it takes a 3 parameter 1.request 2.response 3.next..next is work just like a fn. if we dont call this fn then req dont response..
+// } // we can make a middleware. its a fn . it takes a 3 parameter 1.request 2.response 3.next..next is work just like a fn. if we don't call this fn then req don't response..
 
 // app.use(DemoMiddleware)
 
@@ -45,7 +45,7 @@ app.get('/about',morgan('dev') /*use middleware in single route & we use a lot m
 })
 
 app.get('/help', (req,res)=> {
-  res.send('<h1>hi, this is a helpfull pages.</h1>')
+  res.send('<h1>hi, this is a help full pages.</h1>')
 })
 
 app.get('/', (req,res)=> {
@@ -64,4 +64,4 @@ app.get('*', (req,res)=>{
 const PORT = process.env.PORT || 5050
 app.listen(PORT, () => {
   console.log(`the server is running on port ${PORT}`);
-})//when we create a server ...we need to listen this server otherwise it doesnot work...it take two thing 1 is port 2 is a callback fn..
+})//when we create a server ...we need to listen this server otherwise it does not work...it take two thing 1 is port 2 is a callback fn..

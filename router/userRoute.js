@@ -1,7 +1,7 @@
 
 // route is url..any files url is call its route...
 
-let userRouter = require('express').Router()// router is npm ..but we use it easyly with express....like aboved..
+let userRouter = require('express').Router()// router is npm ..but we use it easily with express....like above..
 
 
 userRouter.get('/login', (req,res)=> {
