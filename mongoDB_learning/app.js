@@ -12,7 +12,7 @@ app.use(
 );
 app.use(express.json());
 
-// for working with mongoose , we need to create a schema & its a data shape & if any data we want to save in data base then this data save this type o shape..
+// for working with mongoose , we need to create a schema & its a data shape & if any data we want to save in data base then this data save this type of shape..
 let Schema = mongoose.Schema;
 let testSchema = new Schema({
   name: String,
@@ -21,6 +21,8 @@ let testSchema = new Schema({
 });
 
 //then we need to make a model for mongoose where we need to tell that which data model use which schema like under ,,here we work with a single schema..
+
+//model method take two parameter 1st is collection name 2nd is schemaName ..collection name means where this schema data save in database...
 
 // here this test variable work like a class & we want to use this model then we need to call it like a class , just like under..
 
